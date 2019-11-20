@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="container center" style="bottom: 55%;">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+    <h2 class="text-white">AgendaAngular</h2>
+    <h2 class="text-white">
+      <span class="txt-rotate" data-period="2000" data-rotate='[ "store.", "save.", "enjoy."]'></span>
+    </h2>
+  </div>
+  <div class="row center" style="top: 10%;">
+    <div class="col-lg-6 mb-4">
+      <div class="box-1">
+        <div class="btn btn-one" routerLink='/user/login' routerLinkActive='active' data-toggle="modal"
+          data-target="#logIn">
+          <span>LOG IN</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 ">
+      <div class="box-1">
+        <div class="btn btn-one" routerLink='/user/registration' routerLinkActive='active' data-toggle="modal"
+          data-target="#signIn">
+          <span>SIGN IN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

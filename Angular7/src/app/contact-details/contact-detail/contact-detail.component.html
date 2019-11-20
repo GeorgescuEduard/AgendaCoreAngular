@@ -1,0 +1,78 @@
+<div class="box-1 text-center mb-2 mt-2">
+  <div class="btn btn-one" data-toggle="modal" data-target="#AddContactModal" style="width: 200px;">
+    <span>NEW CONTACT</span>
+  </div>
+</div>
+<div class="box-1 text-center mb-2 mt-2">
+  <div class="btn btn-one" (click)="this.service.onLogout()" style="width: 200px;">
+    <span>LOG OUT</span>
+  </div>
+</div>
+<div class="modal fade" id="AddContactModal" tabindex="-1" role="dialog" aria-labelledby="AddContactModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddContactModalLabel">Add new contact</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #form="ngForm" autocomplete="off" (submit)="this.service.insertRecord(form)">
+          <input type="hidden" name="UserId" [value]="service.formData.UserId">
+          <input type="hidden" name="ContactId" [value]="service.formData.ContactId">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                  <i class="fas fa-user-circle" [class.red-icon]="Name.invalid && Name.touched"></i>
+                </div>
+              </div>
+              <input name="Name" #Name="ngModel" [(ngModel)]="service.formData.Name" class="form-control"
+                placeholder="Name" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                  <i class="fas fa-phone" [class.red-icon]="PhoneNumber.invalid && PhoneNumber.touched"></i>
+                </div>
+              </div>
+              <input (keypress)="this.service.numberOnly($event)" name="PhoneNumber" #PhoneNumber="ngModel"
+                [(ngModel)]="service.formData.PhoneNumber" class="form-control" placeholder="Phone number" required
+                maxlength="16" minlength="10">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                  <i class="fas fa-address-card" [class.red-icon]="Adress.invalid && Adress.touched"></i>
+                </div>
+              </div>
+              <input name="Adress" #Adress="ngModel" [(ngModel)]="service.formData.Adress" class="form-control"
+                placeholder="Adress" maxlength="100">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                  <i class="fas fa-at" [class.red-icon]="Email.invalid && Email.touched"></i>
+                </div>
+              </div>
+              <input name="Email" #Email="ngModel" [(ngModel)]="service.formData.Email" class="form-control"
+                placeholder="Email" maxlength="50">
+            </div>
+          </div>
+          <div class="form-group text-center mt-4">
+            <button class="btn btn-dark" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i>
+              Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

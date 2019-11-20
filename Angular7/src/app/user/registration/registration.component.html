@@ -1,0 +1,167 @@
+<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="logInModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="container-fluid">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="text-center mb-4">
+                        <i class="fas fa-user-plus fa-4x center-main-image"></i>
+                        <h4>Sign in</h4>
+                    </div>
+                    <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmitRegister()">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>First name</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-white">
+                                                <i class="fas fa-address-book"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control" formControlName="FirstName">
+                                        <label class="text-danger"
+                                            *ngIf="service.formModel.get('FirstName').touched && service.formModel.get('FirstName').errors?.required">This
+                                            field is mandatory.</label>
+                                        <label class="text-danger"
+                                            *ngIf="service.formModel.get('FirstName').touched && service.formModel.get('FirstName').errors?.minlength">First
+                                            name to short.</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label>Last name</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-white">
+                                                <i class="fas fa-address-book"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control" formControlName="LastName">
+                                        <label class="text-danger"
+                                            *ngIf="service.formModel.get('LastName').touched && service.formModel.get('LastName').errors?.required">This
+                                            field is mandatory.</label>
+                                        <label class="text-danger"
+                                            *ngIf="service.formModel.get('LastName').touched && service.formModel.get('LastName').errors?.minlength">Last
+                                            name to short.</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-white">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" formControlName="UserName">
+                                </div>
+                                <div>
+                                    <label class="text-danger"
+                                        *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">
+                                        This
+                                        field is mandatory.</label>
+                                </div>
+                                <div>
+                                    <label class="text-danger"
+                                        *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.minlength">Username
+                                        to short.</label>
+                                </div>
+                                <div>
+                                    <label class="text-danger"
+                                        *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.pattern">Invalid
+                                        Username.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-white">
+                                        <i class="fas fa-at"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" formControlName="Email">
+                            </div>
+                            <div>
+                                <label class="text-danger"
+                                    *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Invalid
+                                    email.</label>
+                            </div>
+                            <div>
+                                <label class="text-danger"
+                                    *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.required">This
+                                    field is mandatory.</label>
+                            </div>
+                            <label class="text-danger"
+                                *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.pattern">Invalid
+                                email.</label>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-white">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                </div>
+                                <input (keypress)="this.service.numberOnly($event)" type="text" class="form-control"
+                                    formControlName="PhoneNumber" minlength="10" maxlength="16">
+                            </div>
+                            <label class="text-danger"
+                                *ngIf="service.formModel.get('PhoneNumber').touched && service.formModel.get('PhoneNumber').errors?.required">This
+                                field is mandatory.</label>
+                        </div>
+                        <div formGroupName="Passwords">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-white">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password" class="form-control" formControlName="Password">
+                                </div>
+                                <label class="text-danger"
+                                    *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">This
+                                    field is mandatory.</label>
+                                <label class="text-danger"
+                                    *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Password
+                                    is to short.</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-white">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password" class="form-control" formControlName="ConfirmPassword">
+                                </div>
+                                <label class="text-danger"
+                                    *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">This
+                                    field is mandatory.</label>
+                                <label class="text-danger"
+                                    *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Password
+                                    doesn't match.</label>
+                            </div>
+                        </div>
+                        <div class="form-row text-center">
+                            <div class="form-group col-md-8 offset-md-2">
+                                <button type="submit" class="btn btn-dark button-main"
+                                    [disabled]="!service.formModel.valid"><i class="fas fa-user-plus"></i> Sign
+                                    in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

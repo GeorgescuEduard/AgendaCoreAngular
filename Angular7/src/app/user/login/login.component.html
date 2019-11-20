@@ -1,0 +1,46 @@
+<div class="modal fade" id="logIn" tabindex="-1" role="dialog" aria-labelledby="logInTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="text-center">
+          <i class="fas fa-user-alt fa-4x center-main-image"></i>
+          <h4>Log in</h4>
+        </div>
+        <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)">
+          <div class="form-group">
+            <label>Username</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                  <i class="fas fa-user" [class.red-icon]="UserName.invalid && UserName.touched"></i>
+                </div>
+              </div>
+              <input type="text" class="form-control" #UserName="ngModel" name="UserName"
+                [(ngModel)]="formModel.UserName" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                  <i class="fas fa-key" [class.red-icon]="Password.invalid && Password.touched"></i>
+                </div>
+              </div>
+              <input type="password" class="form-control" #Password="ngModel" name="Password"
+                [(ngModel)]="formModel.Password" required>
+            </div>
+          </div>
+          <div class="form-row text-center mt-4">
+            <div class="form-group col-md-8 offset-md-2">
+              <button type="submit" class="btn btn-dark button-main"><i class="fas fa-sign-in-alt"></i> Log In</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
